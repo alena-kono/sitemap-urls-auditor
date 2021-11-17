@@ -9,9 +9,9 @@ python = "^3.9"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
-flake8 = "^4.0.1"
+flake8 = "3.9.2"
 mypy = "^0.910"
-flake8-isort = "^4.1.1"
+wemake-python-styleguide = "^0.15.3"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

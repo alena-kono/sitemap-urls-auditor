@@ -10,7 +10,7 @@ on:
 
 
 jobs:
-  linter:
+  wemake_linter:
     runs-on: ubuntu-latest
     steps:
 
@@ -22,5 +22,5 @@ jobs:
         with:
           python-version: 3.9
 
-      - name: Run wemake-python-styleguide checks
+      - name: wemake-python-styleguide
         uses: wemake-services/wemake-python-styleguide

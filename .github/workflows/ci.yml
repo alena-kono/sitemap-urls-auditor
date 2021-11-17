@@ -3,10 +3,10 @@ name: CI
 
 on:
   pull_request:
-    branches: [ "master", "main" ]
+    branches: [ 'master', 'main' ]
 
   push:
-    branches: [ "master", "main" ]
+    branches: [ 'master', 'main' ]
 
 
 jobs:
@@ -24,3 +24,5 @@ jobs:
 
       - name: wemake-python-styleguide
         uses: wemake-services/wemake-python-styleguide
+        with:
+          path: './sitemap_urls_auditor'

@@ -24,7 +24,7 @@ jobs:
       - name: wemake-python-styleguide
         uses: wemake-services/wemake-python-styleguide@0.15.3
         with:
-          path: './try_github_actions/'
+          path: './sitemap_urls_auditor/'
 
       - name: Set up poetry
         uses: abatilo/actions-poetry@v2.0.0
@@ -35,4 +35,4 @@ jobs:
         run: poetry install
 
       - name: Check typing with mypy
-        run: poetry run mypy try_github_actions/
+        run: poetry run mypy sitemap_urls_auditor/

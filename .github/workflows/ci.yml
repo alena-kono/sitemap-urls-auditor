@@ -10,19 +10,29 @@ on:
 
 
 jobs:
-  wemake_linter:
+  check:
     runs-on: ubuntu-latest
     steps:
-
-      - name: Checkout Code Repository
+      - name: Checkout code repository
         uses: actions/checkout@v2
 
-      - name: Set up Python 3.9
+      - name: Set up python 3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
 
       - name: wemake-python-styleguide
-        uses: wemake-services/wemake-python-styleguide
+        uses: wemake-services/wemake-python-styleguide@0.15.3
         with:
-          path: './sitemap_urls_auditor'
+          path: './try_github_actions/'
+
+      - name: Set up poetry
+        uses: abatilo/actions-poetry@v2.0.0
+        with:
+          poetry-version: 1.1
+
+      - name: Install dependencies
+        run: poetry install
+
+      - name: Check typing with mypy
+        run: poetry run mypy try_github_actions/

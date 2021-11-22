@@ -1,8 +1,6 @@
 """Module implements classes that manipulate collections of urls."""
 
-import pickle
 import time
-from typing import NoReturn, Union
 
 import requests
 
@@ -14,12 +12,7 @@ from sitemap_urls_auditor.sitemap.types import (
     Urls,
     UrlsCountByCategory,
 )
-from sitemap_urls_auditor.sitemap.utils import (
-    add_text_to_filename,
-    get_nested_len,
-    get_today_str,
-    group_dict_by_value,
-)
+from sitemap_urls_auditor.sitemap.utils import get_nested_len, group_dict_by_value
 
 
 class UrlStatusCollection:
@@ -41,7 +34,16 @@ class UrlStatusCollection:
         self.urls = urls
         self.responses = {}
 
-    def get_responses(self) -> Responses:
+    def extract_responses(self) -> Responses:
+        """Extract response statuses for each url in `self.urls`.
+
+        Send GET request to each url in `self.urls`, extract status
+        code from each response and save it to `self.responses` dict.
+
+        Returns:
+            Responses: A dict with urls as keys and response
+            statuses as values.
+        """
         urls_count = len(self.urls)
         for index, url in enumerate(self.urls, start=1):
             status = requests.get(url).status_code
@@ -70,13 +72,13 @@ class GroupedUrlStatusCollection(UrlStatusCollection):
     _success_category = 'success'
 
     def __init__(self, urls: Urls) -> None:
-        """Represent InitGroupedUrlStatusCollection class.
+        """Init GroupedUrlStatusCollection class.
 
         Args:
             urls: A list of urls.
         """
         super().__init__(urls)
-        self.responses = self.get_responses()
+        self.responses = self.extract_responses()
         self.urls_by_status_code = {}
 
     def group_by_status_code(self) -> GroupedResponses:

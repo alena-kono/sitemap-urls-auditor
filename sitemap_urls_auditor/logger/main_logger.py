@@ -2,7 +2,7 @@
 
 import logging
 
-from loguru import Logger, logger
+from loguru import logger
 
 
 def disable_usp_logging(level: str) -> None:
@@ -11,9 +11,9 @@ def disable_usp_logging(level: str) -> None:
     logging.getLogger('usp.tree').setLevel(level)
 
 
-def get_loguru_logger() -> Logger:
+def get_loguru_logger():
     return logger
 
 
-disable_usp_logging()
+disable_usp_logging(level=logging.ERROR)
 main_logger = get_loguru_logger()

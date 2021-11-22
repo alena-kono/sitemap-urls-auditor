@@ -40,18 +40,8 @@ class UrlStatusCollection:
         """
         self.urls = urls
         self.responses = {}
-        self._filename = self._get_responses_filename()
 
-    def get_or_save_responses(self) -> Responses:
-        existing_responses = self._get_responses_from_pickle(self._filename)
-        if existing_responses:
-            self.responses = existing_responses
-            return self.responses
-        responses = self._get_responses()
-        self._save_responses_to_pickle()
-        return responses
-
-    def _get_responses(self) -> Responses:
+    def get_responses(self) -> Responses:
         urls_count = len(self.urls)
         for index, url in enumerate(self.urls, start=1):
             status = requests.get(url).status_code
@@ -67,35 +57,6 @@ class UrlStatusCollection:
                 url=url,
                 )
         return self.responses
-
-    def _get_responses_filename(self) -> str:
-        homepage_url = self._parse_homepage_url()
-        base_filename = '{0}.pickle'.format(homepage_url)
-        today = get_today_str()
-        return add_text_to_filename(
-            text=['responses', today],
-            filename=base_filename,
-            )
-
-    def _parse_homepage_url(self) -> str:
-        first_url = self.urls[0]
-        first_url_no_prefix = first_url.removeprefix(self._https_prefix)
-        return first_url_no_prefix.split('/')[0]
-
-    def _save_responses_to_pickle(self) -> None:
-        with open(self._filename, 'wb') as output_file:
-            pickle.dump(self.responses, output_file)
-
-    def _get_responses_from_pickle(
-        self,
-        filename: str,
-    ) -> Union[Responses, NoReturn]:
-        try:
-            with open(filename, 'rb') as input_file:
-                responses = pickle.load(input_file)
-        except FileNotFoundError:
-            return None
-        return responses
 
 
 class GroupedUrlStatusCollection(UrlStatusCollection):
@@ -115,7 +76,7 @@ class GroupedUrlStatusCollection(UrlStatusCollection):
             urls: A list of urls.
         """
         super().__init__(urls)
-        self.responses = self.get_or_save_responses()
+        self.responses = self.get_responses()
         self.urls_by_status_code = {}
 
     def group_by_status_code(self) -> GroupedResponses:
@@ -149,11 +110,3 @@ class GroupedUrlStatusCollection(UrlStatusCollection):
             return self.urls_by_status_code
         self.urls_by_status_code = self.group_by_status_code()
         return self.urls_by_status_code
-
-    def _get_filename_for_status_codes_json(self) -> str:
-        homepage_url = self._parse_homepage_url()
-        today = get_today_str()
-        return add_text_to_filename(
-            text=[homepage_url, today],
-            filename='sitemap_status_codes.json',
-            )

@@ -10,7 +10,7 @@ from usp.tree import sitemap_tree_for_homepage
 from sitemap_urls_auditor.sitemap.types import Urls
 
 
-class SiteMap:
+class SiteMap(object):
     """Represent sitemap for homepage url."""
 
     def __init__(self, homepage_url: str) -> None:

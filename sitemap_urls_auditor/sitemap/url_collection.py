@@ -15,7 +15,7 @@ from sitemap_urls_auditor.sitemap.types import (
 )
 
 
-class UrlStatusCollection:
+class UrlStatusCollection(object):
     """Represent urls and their response status codes.
 
     Args:

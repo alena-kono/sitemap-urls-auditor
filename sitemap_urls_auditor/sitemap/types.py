@@ -1,4 +1,4 @@
-"""This module contains custom types."""
+"""Module contains custom types."""
 
 from typing import Dict, List
 

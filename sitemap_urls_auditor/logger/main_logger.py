@@ -1,4 +1,4 @@
-"""This module configures project's main logger."""
+"""Module configures project's main logger."""
 
 import logging
 

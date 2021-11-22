@@ -1,4 +1,4 @@
-"""This module contains functions that serve cli package."""
+"""Module contains functions that serve cli package."""
 
 
 def convert_to_string(sep: str, **kwargs) -> str:

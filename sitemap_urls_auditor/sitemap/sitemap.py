@@ -1,4 +1,4 @@
-"""This module implements Sitemap class."""
+"""Module implements Sitemap class."""
 
 
 from typing import Iterator

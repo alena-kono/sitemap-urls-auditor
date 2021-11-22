@@ -1,3 +1,5 @@
+"""Module implements classes that manipulate collections of urls."""
+
 import pickle
 import time
 from typing import NoReturn, Union

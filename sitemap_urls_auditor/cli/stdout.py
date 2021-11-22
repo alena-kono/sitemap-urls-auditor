@@ -1,4 +1,4 @@
-"""This module contains functions that serve writing data to stdout."""
+"""Module contains functions that serve writing data to stdout."""
 
 from sitemap_urls_auditor.cli.convert import convert_to_string
 from sitemap_urls_auditor.logger.main_logger import main_logger

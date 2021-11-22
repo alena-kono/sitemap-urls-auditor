@@ -1,3 +1,5 @@
+"""Module contains helper-functions that serve sitemap package."""
+
 import datetime
 from typing import List
 

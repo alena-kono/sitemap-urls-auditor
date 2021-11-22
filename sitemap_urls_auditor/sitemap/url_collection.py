@@ -12,7 +12,7 @@ from sitemap_urls_auditor.sitemap.types import (
     Urls,
     UrlsCountByCategory,
 )
-from sitemap_urls_auditor.sitemap.utils import get_nested_len, group_dict_by_value
+from sitemap_urls_auditor.sitemap.dict_tools import get_nested_len, transpose_dict
 
 
 class UrlStatusCollection:

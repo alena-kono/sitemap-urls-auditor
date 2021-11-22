@@ -12,7 +12,7 @@ from sitemap_urls_auditor.sitemap.types import (
     Urls,
     UrlsCountByCategory,
 )
-from sitemap_urls_auditor.sitemap.dict_tools import get_nested_len, transpose_dict
+from sitemap_urls_auditor.sitemap.dict_tools import get_value_len, transpose_dict
 
 
 class UrlStatusCollection:
@@ -82,11 +82,11 @@ class GroupedUrlStatusCollection(UrlStatusCollection):
         self.urls_by_status_code = {}
 
     def group_by_status_code(self) -> GroupedResponses:
-        return group_dict_by_value(self.responses)
+        return transpose_dict(self.responses)
 
     def get_urls_count_for_status_codes(self) -> StatusCodesCount:
         self._get_or_set_urls_by_status_code()
-        return get_nested_len(self.urls_by_status_code)
+        return get_value_len(self.urls_by_status_code)
 
     def group_by_category(self) -> UrlsCountByCategory:
         self._get_or_set_urls_by_status_code()

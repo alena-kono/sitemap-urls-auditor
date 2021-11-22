@@ -2,4 +2,4 @@
 
 from loguru import logger as main_logger
 
-main_logger.enable('sitemap_urls_auditor')
+main_logger.disable('usp')

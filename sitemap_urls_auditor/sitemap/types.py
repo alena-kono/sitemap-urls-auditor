@@ -5,5 +5,6 @@ from typing import Dict, List
 Responses = Dict[str, int]
 GroupedResponses = Dict[int, str]
 StatusCodesCount = Dict[int, int]
-Urls = List[str]
+Url = str
+Urls = List[Url]
 UrlsCountByCategory = Dict[str, int]

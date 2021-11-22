@@ -27,7 +27,7 @@ def get_value_len(dct: dict) -> dict:
     return counter
 
 
-def transpose_dict(dct: dict):
+def transpose(dct: dict):
     """Transpose `dct`.
 
     Args:

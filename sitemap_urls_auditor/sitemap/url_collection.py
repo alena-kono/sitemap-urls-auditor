@@ -5,6 +5,7 @@ import time
 import requests
 
 from sitemap_urls_auditor.cli.stdout import write_to_stdout
+from sitemap_urls_auditor.sitemap.dict_tools import get_value_len, transpose
 from sitemap_urls_auditor.sitemap.types import (
     GroupedResponses,
     Responses,
@@ -12,7 +13,6 @@ from sitemap_urls_auditor.sitemap.types import (
     Urls,
     UrlsCountByCategory,
 )
-from sitemap_urls_auditor.sitemap.dict_tools import get_value_len, transpose_dict
 
 
 class UrlStatusCollection:
@@ -43,6 +43,20 @@ class UrlStatusCollection:
         Returns:
             Responses: A dict with urls as keys and response
             statuses as values.
+
+        Example:
+            >>> urls = [
+                'https://something.net/news',
+                'https://something.net/blogs,
+                'https://something.net/not-found',
+                ]
+            >>> sitemap = UrlStatusCollection(urls=urls)
+            >>> sitemap.extract_responses()
+            >>> {
+                'https://something.net/news': 200,
+                'https://something.net/blogs': 200,
+                'https://something.net/not-found': 404,
+                }
         """
         urls_count = len(self.urls)
         for index, url in enumerate(self.urls, start=1):
@@ -82,7 +96,7 @@ class GroupedUrlStatusCollection(UrlStatusCollection):
         self.urls_by_status_code = {}
 
     def group_by_status_code(self) -> GroupedResponses:
-        return transpose_dict(self.responses)
+        return transpose(self.responses)
 
     def get_urls_count_for_status_codes(self) -> StatusCodesCount:
         self._get_or_set_urls_by_status_code()

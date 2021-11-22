@@ -43,7 +43,7 @@ class SiteMap(object):
             Urls - a list of urls.
         """
         self._set_all_pages()
-        return [page.url for page in self.pages][:5]  # limit is set!
+        return [page.url for page in self.pages]
 
     def _fetch_tree(self) -> AbstractSitemap:
         return sitemap_tree_for_homepage(self.homepage_url)

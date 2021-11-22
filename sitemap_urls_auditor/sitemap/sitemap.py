@@ -14,11 +14,21 @@ class SiteMap(object):
     """Represent sitemap for homepage url."""
 
     def __init__(self, homepage_url: str) -> None:
+        """Init SiteMap class.
+
+        Args:
+            homepage_url: URL of a homepage. Example: 'https://example.com'.
+        """
         self.homepage_url = homepage_url
         self.pages = None
         self.responses_count = 0
 
     def __repr__(self) -> str:
+        """Represent a `SiteMap` object.
+
+        Returns:
+            <SiteMap(self.homepage.url)>.
+        """
         cls_name = self.__class__.__name__
         description = '<{cls_name}({homepage_url})>'
         return description.format(
@@ -27,6 +37,11 @@ class SiteMap(object):
             )
 
     def get_all_urls(self) -> Urls:
+        """Get urls from `Sitemap` object's pages.
+
+        Returns:
+            Urls - a list of urls.
+        """
         self._set_all_pages()
         return [page.url for page in self.pages][:5]  # limit is set!
 

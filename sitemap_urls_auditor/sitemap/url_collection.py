@@ -96,13 +96,75 @@ class GroupedUrlStatusCollection(UrlStatusCollection):
         self.urls_by_status_code = {}
 
     def group_by_status_code(self) -> GroupedResponses:
+        """Group urls by their response status codes.
+
+        Returns:
+            `dict()` object where keys are response status codes
+            and values are `list()` objects containing appropriate urls.
+
+        Example:
+            >>> urls = {
+                'google.com': 200,
+                'something.net': 200,
+                'notfoundweb.com': 404,
+            }
+            >>> grouped_urls = GroupedUrlStatusCollection(urls)
+            >>> grouped_urls.group_by_status_code()
+            >>> {
+                    200: ['google.com', 'something.net'],
+                    404: ['notfoundweb.com'],
+                }
+        """
         return transpose(self.responses)
 
-    def get_urls_count_for_status_codes(self) -> StatusCodesCount:
+    def get_count_by_status_codes(self) -> StatusCodesCount:
+        """Count urls by their status codes.
+
+        Returns:
+            `dict()` object where keys are response status codes
+            and values are  count of appropriate urls.
+
+        Example:
+            >>> urls = {
+                'google.com': 200,
+                'something.net': 200,
+                'notfoundweb.com': 404,
+            }
+            >>> grouped_urls = GroupedUrlStatusCollection(urls)
+            >>> grouped_urls.get_count_by_status_codes()
+            >>> {
+                    200: 2,
+                    404: 1,
+                }
+        """
         self._get_or_set_urls_by_status_code()
         return get_value_len(self.urls_by_status_code)
 
     def group_by_category(self) -> UrlsCountByCategory:
+        """Group urls by one of the two categories: success or error one.
+
+        'success' category is assigned when response status code is more
+        or equal to 400.
+        'error' category is assigned when response status code is
+        less than 400.
+
+        Returns:
+            `dict()` object where keys are category name
+            and values are count of appropriate urls.
+
+        Example:
+            >>> urls = {
+                'google.com': 200,
+                'something.net': 200,
+                'notfoundweb.com': 404,
+            }
+            >>> grouped_urls = GroupedUrlStatusCollection(urls)
+            >>> grouped_urls.group_by_category()
+            >>> {
+                    'success': 2,
+                    'error': 1,
+                }
+        """
         self._get_or_set_urls_by_status_code()
         urls_by_category = {
             self._success_category: 0,

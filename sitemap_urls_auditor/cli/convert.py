@@ -5,9 +5,11 @@ def convert_to_string(sep: str, **kwargs) -> str:
     """Convert `**kwargs` to string and concatenate them using separator.
 
     Args:
-        sep: Separator to be used to separate each keyword argument.
-        **kwargs: Keyword arguments to be unpacked and converted
-        to string using separator.
+        sep:
+            Separator to be used to separate each keyword argument.
+        kwargs:
+            Keyword arguments to be unpacked and converted
+            to string using separator.
 
     Returns:
         Concatenated string.

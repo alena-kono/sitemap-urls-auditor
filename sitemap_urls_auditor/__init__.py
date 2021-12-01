@@ -1,1 +1,4 @@
-__version__ = '0.1.0'
+"""Sitemap-urls-auditor package.
+
+Package implements core functionality of this app.
+"""

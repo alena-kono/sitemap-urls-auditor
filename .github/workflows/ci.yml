@@ -21,11 +21,6 @@ jobs:
         with:
           python-version: 3.9
 
-      - name: wemake-python-styleguide
-        uses: wemake-services/wemake-python-styleguide@0.15.3
-        with:
-          path: './sitemap_urls_auditor/'
-
       - name: Set up poetry
         uses: abatilo/actions-poetry@v2.0.0
         with:
@@ -33,6 +28,9 @@ jobs:
 
       - name: Install dependencies
         run: poetry install
+
+      - name: Run wemake-python-styleguide
+        run: poetry run flake8 ./sitemap_urls_auditor/
 
       - name: Check typing with mypy
         run: poetry run mypy sitemap_urls_auditor/

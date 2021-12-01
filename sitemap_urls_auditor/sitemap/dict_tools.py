@@ -1,7 +1,9 @@
 """Module contains helper-functions that serve sitemap package."""
 
+from typing import Any, Dict, List, Union
 
-def get_value_len(dct: dict) -> dict:
+
+def get_value_len(dct: Dict[Any, Any]) -> Dict[Any, int]:
     """Get length of each dictionary value.
 
     Args:
@@ -27,7 +29,7 @@ def get_value_len(dct: dict) -> dict:
     return counter
 
 
-def transpose(dct: dict):
+def transpose(dct: Dict[Any, Any]):
     """Transpose `dct`.
 
     Args:
@@ -48,7 +50,7 @@ def transpose(dct: dict):
             404: ['notfoundweb.com'],
             }
     """
-    grouped = {}
+    grouped: Dict[Union[str, int], List[Any]] = {}
     for key, transposable in dct.items():
         grouped.setdefault(transposable, []).append(key)
     return grouped

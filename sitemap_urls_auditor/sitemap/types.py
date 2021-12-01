@@ -2,9 +2,10 @@
 
 from typing import Dict, List
 
-Responses = Dict[str, int]
-GroupedResponses = Dict[int, str]
-StatusCodesCount = Dict[int, int]
 Url = str
 Urls = List[Url]
+
+Responses = Dict[Url, int]
+GroupedResponses = Dict[int, Url]
+StatusCodesCount = Dict[int, int]
 UrlsCountByCategory = Dict[str, int]

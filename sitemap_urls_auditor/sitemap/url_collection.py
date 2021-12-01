@@ -32,7 +32,7 @@ class UrlStatusCollection(object):
             urls: A list of urls.
         """
         self.urls = urls
-        self.responses = {}
+        self.responses: Responses = {}
 
     def extract_responses(self) -> Responses:
         """Extract response statuses for each url in `self.urls`.
@@ -93,7 +93,7 @@ class GroupedUrlStatusCollection(UrlStatusCollection):
         """
         super().__init__(urls)
         self.responses = self.extract_responses()
-        self.urls_by_status_code = {}
+        self.urls_by_status_code: GroupedResponses = {}
 
     def group_by_status_code(self) -> GroupedResponses:
         """Group urls by their response status codes.

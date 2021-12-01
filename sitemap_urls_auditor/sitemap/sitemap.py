@@ -20,7 +20,6 @@ class SiteMap(object):
             homepage_url: URL of a homepage. Example: 'https://example.com'.
         """
         self.homepage_url = homepage_url
-        self.pages = None
         self.responses_count = 0
 
     def __repr__(self) -> str:
@@ -42,8 +41,8 @@ class SiteMap(object):
         Returns:
             Urls - a list of urls.
         """
-        self._set_all_pages()
-        return [page.url for page in self.pages]
+        pages = self._get_all_pages_from_tree()
+        return [page.url for page in pages]
 
     def _fetch_tree(self) -> AbstractSitemap:
         return sitemap_tree_for_homepage(self.homepage_url)
@@ -51,6 +50,3 @@ class SiteMap(object):
     def _get_all_pages_from_tree(self) -> Iterator[SitemapPage]:
         tree = self._fetch_tree()
         return tree.all_pages()
-
-    def _set_all_pages(self) -> None:
-        self.pages = self._get_all_pages_from_tree()

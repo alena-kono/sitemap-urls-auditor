@@ -34,8 +34,8 @@ class UrlStatusCollection(object):
         self.urls = urls
         self.responses: Responses = {}
 
-    def extract_responses(self) -> Responses:
-        """Extract response statuses for each url in `self.urls`.
+    def fetch_status_codes(self) -> Responses:
+        """Get response statuses for each url in `self.urls`.
 
         Send GET request to each url in `self.urls`, extract status
         code from each response and save it to `self.responses` dict.
@@ -51,7 +51,7 @@ class UrlStatusCollection(object):
                 'https://something.net/not-found',
                 ]
             >>> sitemap = UrlStatusCollection(urls=urls)
-            >>> sitemap.extract_responses()
+            >>> sitemap.fetch_status_codes()
             >>> {
                 'https://something.net/news': 200,
                 'https://something.net/blogs': 200,
@@ -92,7 +92,7 @@ class GroupedUrlStatusCollection(UrlStatusCollection):
             urls: A list of urls.
         """
         super().__init__(urls)
-        self.responses = self.extract_responses()
+        self.responses = self.fetch_status_codes()
         self.urls_by_status_code: GroupedResponses = {}
 
     def group_by_status_code(self) -> GroupedResponses:

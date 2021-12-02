@@ -21,5 +21,5 @@ def convert_to_string(sep: str, **kwargs) -> str:
     template = '{0}={1}'
     unpacked_kwargs = (
         template.format(key, arg) for key, arg in kwargs.items()
-        )
+    )
     return sep.join(unpacked_kwargs)

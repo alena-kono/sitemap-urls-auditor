@@ -33,7 +33,7 @@ class SiteMap(object):
         return description.format(
             cls_name=cls_name,
             homepage_url=self.homepage_url,
-            )
+        )
 
     def get_all_urls(self) -> Urls:
         """Get urls from `Sitemap` object's pages.

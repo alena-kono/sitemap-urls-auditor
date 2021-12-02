@@ -71,7 +71,7 @@ class UrlStatusCollection(object):
                 total_count=urls_count,
                 status=status,
                 url=url,
-                )
+            )
         return self.responses
 
 
@@ -169,7 +169,7 @@ class GroupedUrlStatusCollection(UrlStatusCollection):
         urls_by_category = {
             self._success_category: 0,
             self._error_category: 0,
-            }
+        }
         for status, urls in self.urls_by_status_code.items():
 
             if status < self._bad_status_code:
@@ -180,7 +180,7 @@ class GroupedUrlStatusCollection(UrlStatusCollection):
             existing_urls_count = urls_by_category.get(category, 0)
             urls_by_category.update(
                 {category: existing_urls_count + len(urls)},
-                )
+            )
         return urls_by_category
 
     def _get_or_set_urls_by_status_code(self) -> GroupedResponses:

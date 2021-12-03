@@ -4,7 +4,6 @@ import time
 
 import requests
 
-from sitemap_urls_auditor.cli.stdout import write_to_stdout
 from sitemap_urls_auditor.sitemap.dict_tools import get_value_len, transpose
 from sitemap_urls_auditor.sitemap.types import (
     GroupedResponses,
@@ -21,8 +20,6 @@ class UrlStatusCollection(object):
     Args:
         urls: A list of urls.
     """
-
-    _bad_status_code = 400
 
     def __init__(self, urls: Urls) -> None:
         """Init UrlStatusCollection class.
@@ -57,20 +54,10 @@ class UrlStatusCollection(object):
                 'https://something.net/not-found': 404,
                 }
         """
-        urls_count = len(self.urls)
-        for index, url in enumerate(self.urls, start=1):
+        for url in self.urls:
             status = requests.get(url).status_code
             time.sleep(1)
             self.responses.update({url: status})
-
-            is_ok_status = status < self._bad_status_code
-            write_to_stdout(
-                is_success=is_ok_status,
-                index=index,
-                total_count=urls_count,
-                status=status,
-                url=url,
-            )
         return self.responses
 
 
@@ -83,6 +70,7 @@ class GroupedUrlStatusCollection(UrlStatusCollection):
 
     _error_category = 'error'
     _success_category = 'success'
+    _bad_status_code = 400
 
     def __init__(self, urls: Urls) -> None:
         """Init GroupedUrlStatusCollection class.

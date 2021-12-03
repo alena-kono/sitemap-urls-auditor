@@ -3,10 +3,12 @@
 
 from typing import Iterator
 
+import validators
 from usp.objects.page import SitemapPage
 from usp.objects.sitemap import AbstractSitemap
 from usp.tree import sitemap_tree_for_homepage
 
+from sitemap_urls_auditor.sitemap.exceptions import InvalidUrlError
 from sitemap_urls_auditor.sitemap.types import Urls
 
 
@@ -18,9 +20,15 @@ class SiteMap(object):
 
         Args:
             homepage_url: URL of a homepage. Example: 'https://example.com'.
+
+        Raises:
+            InvalidUrlError: If homepage_url is not a valid url.
         """
+        try:
+            validators.url(homepage_url)
+        except validators.ValidationFailure:
+            raise InvalidUrlError(homepage_url)
         self.homepage_url = homepage_url
-        self.responses_count = 0
 
     def __repr__(self) -> str:
         """Represent a `SiteMap` object.

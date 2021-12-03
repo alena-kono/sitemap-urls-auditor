@@ -9,6 +9,7 @@ python = "^3.9"
 ultimate-sitemap-parser = "^0.5"
 requests = "^2.26.0"
 loguru = "^0.5.3"
+validators = "^0.18.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

@@ -22,7 +22,6 @@ class UrlStatusCollection(object):
         urls: A list of urls.
     """
 
-    _https_prefix = 'https://'
     _bad_status_code = 400
 
     def __init__(self, urls: Urls) -> None:

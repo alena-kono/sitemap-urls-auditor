@@ -1,4 +1,4 @@
-"""Module implement functions responsible for writteing ti stdout."""
+"""Module implement functions responsible for writtening data to stdout."""
 
 
 import json

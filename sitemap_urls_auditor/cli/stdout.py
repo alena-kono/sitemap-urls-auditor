@@ -1,5 +1,7 @@
 """Module contains functions that serve writing data to stdout."""
 
+import typer
+
 from sitemap_urls_auditor.cli.convert import convert_to_string
 from sitemap_urls_auditor.logger.main_logger import main_logger
 
@@ -43,3 +45,20 @@ def write_to_stdout(
         main_logger.success(final_msg)
     else:
         main_logger.error(final_msg)
+
+
+def colorize(text: str, success: bool = True) -> str:
+    """Colorize text to be written to stdout.
+
+    Args:
+        text:
+            Text to be colorized.
+        success:
+            If True, text color to be set to green,
+            otherwise - to red.
+
+    Returns:
+        Text which has green or red color.
+    """
+    color = 'green' if success else 'red'
+    return typer.style(text=text, fg=color)

@@ -24,9 +24,7 @@ class SiteMap(object):
         Raises:
             InvalidUrlError: If homepage_url is not a valid url.
         """
-        try:
-            validators.url(homepage_url)
-        except validators.ValidationFailure:
+        if not validators.url(homepage_url):
             raise InvalidUrlError(homepage_url)
         self.homepage_url = homepage_url
 

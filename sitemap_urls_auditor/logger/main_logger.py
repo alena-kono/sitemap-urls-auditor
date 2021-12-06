@@ -1,20 +1,24 @@
 """Module configures project's main logger."""
 
 import logging
-from typing import Union
 
 from loguru import logger
 
 
-def disable_usp_logging(level: Union[str, int]) -> None:
+def disable_usp_logging() -> None:
     """Disable logging of ultimate-sitemap-parser (usp) library.
 
-    Args:
-        level: Logging level to be set for usp library loggers.
+    Usp package initializes default logging.Logger() each time it
+    imports something from its core submodules.
+
+    Therefore, this function disables usp loggers after it imports
+    one of the usp functions.
     """
-    logging.getLogger('usp.helpers').setLevel(level)
-    logging.getLogger('usp.fetch_parse').setLevel(level)
-    logging.getLogger('usp.tree').setLevel(level)
+    from usp.tree import sitemap_tree_for_homepage  # noqa: F401, WPS433
+
+    for name, each_logger in logging.root.manager.loggerDict.items():
+        if name.startswith('usp') and isinstance(each_logger, logging.Logger):
+            each_logger.disabled = True
 
 
 def get_loguru_logger():
@@ -26,5 +30,4 @@ def get_loguru_logger():
     return logger
 
 
-disable_usp_logging(level=logging.ERROR)
 main_logger = get_loguru_logger()

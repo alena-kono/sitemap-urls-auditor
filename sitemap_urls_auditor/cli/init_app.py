@@ -1,7 +1,5 @@
 """Init typer CLI app."""
 
-import logging
-
 import typer
 
 from sitemap_urls_auditor.logger.main_logger import disable_usp_logging
@@ -15,7 +13,7 @@ def init_typer_app() -> typer.Typer:
     Returns:
         typer.Typer() object.
     """
-    disable_usp_logging(level=logging.ERROR)
+    disable_usp_logging()
     return typer.Typer()
 
 

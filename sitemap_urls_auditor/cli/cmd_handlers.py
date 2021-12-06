@@ -14,8 +14,7 @@ from sitemap_urls_auditor.cli.cmd_validators import is_json_filename
 from sitemap_urls_auditor.cli.init_app import app
 from sitemap_urls_auditor.output.save_json import save_to_json
 from sitemap_urls_auditor.output.stdout import write_to_stdout_pager
-from sitemap_urls_auditor.sitemap.sitemap import SiteMap
-from sitemap_urls_auditor.sitemap.url_collection import GroupedUrlStatusCollection  # noqa: E501
+from sitemap_urls_auditor.sitemap.shortcuts import get_urls_statuses
 
 
 @app.command()
@@ -45,8 +44,7 @@ def process_main_cmd(url: str, filename: Optional[str] = None) -> None:
         typer.Exit(code=1)
         return None
 
-    urls = SiteMap(url).get_all_urls()
-    urls_statuses = GroupedUrlStatusCollection(urls).group_by_status_code()
+    urls_statuses = get_urls_statuses(url)
 
     if filename:
         save_to_json(data_object=urls_statuses, filename=filename)

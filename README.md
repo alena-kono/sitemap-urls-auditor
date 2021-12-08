@@ -68,7 +68,6 @@ How to use
 
     Result example:
 
-        $
         {
             "200": [
                 "https://typer.tiangolo.com/",

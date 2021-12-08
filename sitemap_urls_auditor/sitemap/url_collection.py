@@ -91,15 +91,15 @@ class GroupedUrlStatusCollection(UrlStatusCollection):
 
         Example:
             >>> urls = {
-                'google.com': 200,
-                'something.net': 200,
-                'notfoundweb.com': 404,
+                'https://google.com': 200,
+                'https://something.net': 200,
+                'https://notfoundweb.com': 404,
             }
             >>> grouped_urls = GroupedUrlStatusCollection(urls)
             >>> grouped_urls.group_by_status_code()
             >>> {
-                    200: ['google.com', 'something.net'],
-                    404: ['notfoundweb.com'],
+                    200: ['https://google.com', 'https://something.net'],
+                    404: ['https://notfoundweb.com'],
                 }
         """
         return transpose(self.responses)
@@ -115,9 +115,9 @@ class GroupedUrlStatusCollection(UrlStatusCollection):
 
         Example:
             >>> urls = {
-                'google.com': 200,
-                'something.net': 200,
-                'notfoundweb.com': 404,
+                'https://google.com': 200,
+                'https://something.net': 200,
+                'https://notfoundweb.com': 404,
             }
             >>> grouped_urls = GroupedUrlStatusCollection(urls)
             >>> grouped_urls.get_count_by_status_codes()
@@ -146,9 +146,9 @@ class GroupedUrlStatusCollection(UrlStatusCollection):
 
         Example:
             >>> urls = {
-                'google.com': 200,
-                'something.net': 200,
-                'notfoundweb.com': 404,
+                'https://google.com': 200,
+                'https://something.net': 200,
+                'https://notfoundweb.com': 404,
             }
             >>> grouped_urls = GroupedUrlStatusCollection(urls)
             >>> grouped_urls.group_by_category()

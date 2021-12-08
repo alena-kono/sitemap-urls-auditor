@@ -62,6 +62,19 @@ How to use
 
         $ poetry run python sitemap_urls_auditor/cli/cmd_handlers.py https://typer.tiangolo.com
 
+    Result example:
+
+        $
+        {
+            "200": [
+                "https://typer.tiangolo.com/",
+                "https://typer.tiangolo.com/alternatives/",
+                "https://typer.tiangolo.com/contributing/",
+                "https://typer.tiangolo.com/features/",
+                ...,
+            ],
+        }
+
 - Or we can add `--filename` option and pass a filename argument to save our result to .json.
 
         $ poetry run python sitemap_urls_auditor/cli/cmd_handlers.py https://typer.tiangolo.com --filename output_typer_urls.json

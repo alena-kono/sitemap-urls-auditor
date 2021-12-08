@@ -26,7 +26,7 @@ I just want my product to be healthy and wealthy.
 
 Features
 --------
-- This CLI tool has only one command (URL) with one option (--filename).
+- This CLI tool accepts only one argument (URL) and one option (--filename).
 - Can output result only to default pager or .json file.
 - `--help` option is also available.
 - Based on great `typer` [library](https://typer.tiangolo.com) by [*tiangolo*](https://github.com/tiangolo).
@@ -56,11 +56,15 @@ Developed and runs on `python 3.9`.
 
         $ poetry install
 
+3. Activate poetry virtual environment shell:
+
+        $ poetry shell
+
 How to use
 ----------
 - For example, we want to check urls of `typer` website. For that we'll need only its homepage url which is https://typer.tiangolo.com. To run tool and print result via the default pager:
 
-        $ poetry run python sitemap_urls_auditor/cli/cmd_handlers.py https://typer.tiangolo.com
+        $ sitemap-urls-auditor https://typer.tiangolo.com
 
     Result example:
 
@@ -77,17 +81,17 @@ How to use
 
 - Or we can add `--filename` option and pass a filename argument to save our result to .json.
 
-        $ poetry run python sitemap_urls_auditor/cli/cmd_handlers.py https://typer.tiangolo.com --filename output_typer_urls.json
+        $ sitemap-urls-auditor https://typer.tiangolo.com --filename output_typer_urls.json
 
 - For help run:
 
-        $ poetry run python sitemap_urls_auditor/cli/cmd_handlers.py --help
+        $ sitemap-urls-auditor --help
 
 List of improvements
 --------------------
 ◻️ Add tests.
 
-◻️ Make human readable alias for `poetry run python sitemap_urls_auditor/cli/cmd_handlers.py URL`.
+✅️ Make human readable alias for `poetry run python sitemap_urls_auditor/cli/cmd_handlers.py URL`.
 
 ◻️ Implement option `--summary` which outputs pivot information about urls' statuses (Develop command handler, two methods are already implemented - [here](https://github.com/alena-kono/sitemap-urls-auditor/blob/16af6f736881999998f778f1bed8160b8b42aef6/sitemap_urls_auditor/sitemap/url_collection.py#L107) and [here](https://github.com/alena-kono/sitemap-urls-auditor/blob/16af6f736881999998f778f1bed8160b8b42aef6/sitemap_urls_auditor/sitemap/url_collection.py#L130)).
 

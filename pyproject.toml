@@ -4,6 +4,9 @@ version = "0.1.0"
 description = ""
 authors = ["Alena Konovalova <konovalova.alena@gmail.com>"]
 
+[tool.poetry.scripts]
+sitemap-urls-auditor = "sitemap_urls_auditor.cli.cmd_handlers:app"
+
 [tool.poetry.dependencies]
 python = "^3.9"
 ultimate-sitemap-parser = "^0.5"

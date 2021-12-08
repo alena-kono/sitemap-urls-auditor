@@ -19,9 +19,7 @@ from sitemap_urls_auditor.sitemap.shortcuts import get_urls_statuses
 
 @app.command()
 def process_main_cmd(url: str, filename: Optional[str] = None) -> None:
-    """Process CLI-command.
-
-    Get sitemap and fetch response status code for each url.
+    """Get sitemap and fetch response status code for each url.
 
     Args:
         url:

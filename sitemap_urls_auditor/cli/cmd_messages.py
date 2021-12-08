@@ -2,7 +2,7 @@
 
 import typer
 
-from sitemap_urls_auditor.cli.stdout import colorize
+from sitemap_urls_auditor.output.stdout import colorize
 
 
 def send_error_msg_invalid_json_filename(filename: str) -> None:

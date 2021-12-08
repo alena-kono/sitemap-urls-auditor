@@ -107,6 +107,8 @@ class GroupedUrlStatusCollection(UrlStatusCollection):
     def get_count_by_status_codes(self) -> StatusCodesCount:
         """Count urls by their status codes.
 
+        Important note: This method is not in use of CLI app yet.
+
         Returns:
             `dict()` object where keys are response status codes
             and values are  count of appropriate urls.
@@ -128,12 +130,15 @@ class GroupedUrlStatusCollection(UrlStatusCollection):
         return get_value_len(self.urls_by_status_code)
 
     def group_by_category(self) -> UrlsCountByCategory:
-        """Group urls by one of the two categories: success or error one.
+        """Group urls by one of the two categories - success or error one.
 
         'success' category is assigned when response status code is more
         or equal to 400.
+
         'error' category is assigned when response status code is
         less than 400.
+
+        Important note: This method is not in use of CLI app yet.
 
         Returns:
             `dict()` object where keys are category name
